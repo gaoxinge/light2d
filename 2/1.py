@@ -51,7 +51,7 @@ class Intersect(Shape):
         sd2 = self.shape2.sdf(x, y)
         rgb1 = self.shape1.rgb(t, x, y)
         rgb2 = self.shape2.rgb(t, x, y)
-        return np.where(sd1 < sd2, rgb1, rgb2)
+        return np.where(sd1 < sd2, rgb2, rgb1)
 
 
 class Union(Shape):
@@ -100,9 +100,9 @@ s = np.sin(theta)
 
 circle1 = Circle(250, 220, 50, 200, 200, 200)
 circle2 = Circle(250, 280, 50, 255, 255, 255)
-# shape = Intersect(circle1, circle2)
+shape = Intersect(circle1, circle2)
 # shape = Union(circle1, circle2)
-shape = Subtract(circle1, circle2)
+# shape = Subtract(circle1, circle2)
 # shape = Subtract(circle2, circle1)
 
 step = 64

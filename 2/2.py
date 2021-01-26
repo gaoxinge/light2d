@@ -51,7 +51,7 @@ class Intersect(Shape):
         sd2 = self.shape2.sdf(x, y)
         rgb1 = self.shape1.rgb(t, x, y)
         rgb2 = self.shape2.rgb(t, x, y)
-        return np.where(sd1 < sd2, rgb1, rgb2)
+        return np.where(sd1 < sd2, rgb2, rgb1)
 
 
 class Union(Shape):
