@@ -54,7 +54,7 @@ class Circle(Shape):
 
 class Plane(Shape):
 
-    def __init__(self, x, y, nx, ny, r, b, g):
+    def __init__(self, x, y, nx, ny, r, g, b):
         self.x = x
         self.y = y
         self.nx = nx
