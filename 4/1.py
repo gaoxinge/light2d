@@ -169,7 +169,7 @@ class Triangle(Shape):
         d0 = ((self.bx - self.ax) * (y - self.ay) > (self.by - self.ay) * (x - self.ax)) * \
              ((self.cx - self.bx) * (y - self.by) > (self.cy - self.by) * (x - self.bx)) * \
              ((self.ax - self.cx) * (y - self.cy) > (self.ay - self.cy) * (x - self.cx))
-        d1 = np.minimum(
+        d1 = minimum(
             segment(x, y, self.ax, self.ay, self.bx, self.by),
             segment(x, y, self.bx, self.by, self.cx, self.cy),
             segment(x, y, self.cx, self.cy, self.ax, self.ay),
