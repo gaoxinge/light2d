@@ -269,7 +269,7 @@ class Subtract(Shape):
 
 
 x = np.tile(np.arange(0, 500), (500, 1)).T
-y = np.transpose(x)
+y = np.tile(np.arange(0, 500), (500, 1))
 x = np.repeat(x[:, :, np.newaxis], 64, axis=2)
 y = np.repeat(y[:, :, np.newaxis], 64, axis=2)
 # theta = 2 * np.pi * np.random.random((500, 500, 64))
