@@ -1,4 +1,3 @@
-import time
 from abc import ABC, abstractmethod
 
 import cv2
@@ -283,37 +282,17 @@ class CornerTriangle(Corner):
         super(CornerTriangle, self).__init__(triangle, r)
 
 
-# circle = Circle(100, 200, 50, 255 * 2, 255 * 2, 255 * 2, 0)
-# box1 = Rectangle(400, 250, -2 * np.pi / 16, 50, 50, 0, 0, 0, 0.9)
-# box2 = Rectangle(250, 400, -2 * np.pi / 16, 50, 50, 0, 0, 0, 0)
-# shape = Union(Union(circle, box1), box2)
-
-# circle1 = Circle(150, 250, 50, 255 * 2, 255 * 2, 255 * 2, 0)
-# circle2 = Circle(350, 250, 50, 0, 0, 0, 0.9)
-# shape = Union(circle1, circle2)
-
-# step = 64
-# epsilon = 1e-6
-#
-# W = 500
-# H = 500
-# S = 64
-
-# circle = Circle(40, 40, 20, 255 * 2, 255 * 2, 255 * 2, 0)
-# plane = Plane(100, 100, -1, 0, 0, 0, 0, 0.9)
-# shape = Union(circle, plane)
-
-circle = Circle(40, 40, 20, 255 * 2, 255 * 2, 255 * 2, 0)
-box1 = Rectangle(150, 100, -2 * np.pi / 16, 20, 20, 0, 0, 0, 0)
-box2 = Rectangle(100, 150, -2 * np.pi / 16, 20, 20, 0, 0, 0, 0)
+circle = Circle(100, 200, 50, 255 * 2, 255 * 2, 255 * 2, 0)
+box1 = Rectangle(400, 250, -2 * np.pi / 16, 50, 50, 0, 0, 0, 0.9)
+box2 = Rectangle(250, 400, -2 * np.pi / 16, 50, 50, 0, 0, 0, 0.9)
 shape = Union(Union(circle, box1), box2)
+
+W = 500
+H = 500
+S = 64
 
 step = 300
 epsilon = 1e-6
-
-W = 200
-H = 200
-S = 64
 
 x = np.tile(np.arange(0, W), (H, 1)).T
 y = np.tile(np.arange(0, H), (W, 1))
@@ -323,17 +302,12 @@ y = np.repeat(y[:, :, np.newaxis], S, axis=2)
 theta = 2 * np.pi / S * (np.tile(np.arange(0, S), (W, H, 1)) + np.random.random((W, H, S)))
 ix = np.cos(theta)
 iy = np.sin(theta)
-# theta = np.ones((W, H, S)) * np.pi / 4
-# ix = np.cos(theta)
-# iy = -np.sin(theta)
-
 
 stop = np.zeros((W, H, S), dtype=np.bool)
-
+reflectivity = np.ones((W, H, S))
 r = np.zeros((W, H, S))
 g = np.zeros((W, H, S))
 b = np.zeros((W, H, S))
-reflectivity = np.ones((W, H, S))
 
 """
 sd = shape.sdf(x, y)
@@ -380,7 +354,6 @@ for i in range(step):
     # block
     t = (~stop) * (sd < epsilon) * (reflectivity == 0)
     stop = np.where(t, True, stop)
-
 
 r = 1 / S * np.sum(r, axis=2)
 g = 1 / S * np.sum(g, axis=2)
