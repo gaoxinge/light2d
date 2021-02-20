@@ -396,8 +396,7 @@ class Light2D:
             sd = self.shape.sdf(x, y)
 
             # with tf.GradientTape() as tape:
-            #     tape.watch(x)
-            #     tape.watch(y)
+            #     tape.watch([x, y])
             #     sd = self.shape.sdf(x, y)
             # nx, ny = tape.gradient(sd, [x, y])
 
