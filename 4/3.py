@@ -417,8 +417,8 @@ class Light2D:
             t = (~stop) & (sd < epsilon) & ((sd >= 0) & (reflectivity != 0))
             nx, ny = gradient(self.shape, x, y, epsilon)
             ix, iy = tf.where(t, reflect(ix, iy, nx, ny), [ix, iy])
-            x = tf.where(t, x + 1e-4 * nx, x)
-            y = tf.where(t, y + 1e-4 * ny, y)
+            x = tf.where(t, x + epsilon * ix, x)
+            y = tf.where(t, y + epsilon * iy, y)
 
             # block
             t = (~stop) & (sd < epsilon) & ((sd < 0) | (reflectivity == 0))
