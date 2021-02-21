@@ -368,8 +368,8 @@ class Light2D:
                 if sd >= 0 and reflectivity != 0
                     nx, ny = gradient(shape, x, y, epsilon)
                     ix, iy = reflect(x, y, ix, iy)
-                    x = x + nx * epsilon
-                    y = y + nx * epsilon
+                    x = x + ix * epsilon
+                    y = y + iy * epsilon
                 else
                     stop = True
         """
