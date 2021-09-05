@@ -17,4 +17,5 @@ Rewrite light2d by python.
 
 ## my article
 
-- [学习小结一：用 C 语言画光](https://zhuanlan.zhihu.com/p/351874187)
+- article
+  - [学习小结一：用 C 语言画光](https://zhuanlan.zhihu.com/p/351874187)
