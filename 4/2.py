@@ -70,7 +70,6 @@ class Intersect(Shape):
     def __init__(self, shape1, shape2):
         self.shape1 = shape1
         self.shape2 = shape2
-
         self.tmp = None
 
     def sdf(self, x, y):
@@ -98,7 +97,6 @@ class Union(Shape):
     def __init__(self, shape1, shape2):
         self.shape1 = shape1
         self.shape2 = shape2
-
         self.tmp = None
 
     def sdf(self, x, y):
@@ -312,19 +310,19 @@ b = np.zeros((W, H, S))
 """
 sd = shape.sdf(x, y)
 if not stop
-    if sd < epsilon
+    if sd >= epsilon
+        x = x + ix * sd
+        y = y + iy * sd
+    else
         rgb = rgb + shape.rgb(x, y) * reflectivity
         reflectivity = shape.reflectivity(x, y)
-        if reflectivity == 0
-            stop = True
-        else
+        if sd >= 0 and reflectivity != 0
             nx, ny = gradient(shape, x, y, epsilon)
-            ix, iy = reflect(x, y, ix, iy)
-            x = x + nx * epsilon
-            y = y + nx * epsilon
-    else
-        x = x + ix * sd
-        y = y + ix * sd
+            ix, iy = reflect(ix, iy, nx, ny)
+            x = x + ix * epsilon
+            y = y + iy * epsilon
+        else
+            stop = True
 """
 
 for i in range(step):
@@ -332,12 +330,12 @@ for i in range(step):
     sd = shape.sdf(x, y)
 
     # block
-    t = (~stop) * (sd >= epsilon)
+    t = (~stop) & (sd >= epsilon)
     x = np.where(t, x + ix * sd, x)
     y = np.where(t, y + iy * sd, y)
 
     # block
-    t = (~stop) * (sd < epsilon)
+    t = (~stop) & (sd < epsilon)
     r0, g0, b0 = shape.rgb(x, y)
     r += np.where(t, r0, 0) * reflectivity
     g += np.where(t, g0, 0) * reflectivity
@@ -345,14 +343,14 @@ for i in range(step):
     reflectivity = np.where(t, shape.reflectivity(x, y), reflectivity)
 
     # block
-    t = (~stop) * (sd < epsilon) * (reflectivity != 0)
+    t = (~stop) & (sd < epsilon) & ((sd >= 0) & (reflectivity != 0))
     nx, ny = gradient(shape, x, y, 1e-6)
     ix, iy = np.where(t, reflect(ix, iy, nx, ny), [ix, iy])
     x = np.where(t, x + 1e-4 * nx, x)
     y = np.where(t, y + 1e-4 * ny, y)
 
     # block
-    t = (~stop) * (sd < epsilon) * (reflectivity == 0)
+    t = (~stop) & (sd < epsilon) & ((sd < 0) | (reflectivity == 0))
     stop = np.where(t, True, stop)
 
 r = 1 / S * np.sum(r, axis=2)

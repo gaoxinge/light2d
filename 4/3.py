@@ -361,13 +361,13 @@ class Light2D:
         if not stop
             if sd >= epsilon
                 x = x + ix * sd
-                y = y + ix * sd
+                y = y + iy * sd
             else
                 rgb = rgb + shape.rgb(x, y) * reflectivity
                 reflectivity = shape.reflectivity(x, y)
                 if sd >= 0 and reflectivity != 0
                     nx, ny = gradient(shape, x, y, epsilon)
-                    ix, iy = reflect(x, y, ix, iy)
+                    ix, iy = reflect(ix, iy, nx, ny)
                     x = x + ix * epsilon
                     y = y + iy * epsilon
                 else
