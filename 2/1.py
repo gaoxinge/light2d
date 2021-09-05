@@ -98,8 +98,8 @@ theta = 2 * np.pi / 64 * (np.tile(np.arange(0, 64), (500, 500, 1)) + np.random.r
 c = np.cos(theta)
 s = np.sin(theta)
 
-circle1 = Circle(250, 220, 50, 200, 200, 200)
-circle2 = Circle(250, 280, 50, 255, 255, 255)
+circle1 = Circle(250, 220, 50, 255, 255, 255)
+circle2 = Circle(250, 280, 50, 200, 200, 200)
 shape = Intersect(circle1, circle2)
 # shape = Union(circle1, circle2)
 # shape = Subtract(circle1, circle2)
