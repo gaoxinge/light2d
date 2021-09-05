@@ -2,7 +2,7 @@
 
 Rewrite light2d by python. 
 
-## original article and code
+## origin article and code
 
 - article
   - [用 C 语言画光（一）：基础](https://zhuanlan.zhihu.com/p/30745861)
