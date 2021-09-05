@@ -278,25 +278,15 @@ theta = 2 * np.pi / 64 * (np.tile(np.arange(0, 64), (500, 500, 1)) + np.random.r
 c = np.cos(theta)
 s = np.sin(theta)
 
-# 1
-# circle = Circle(250, 250, 80, 255, 255, 255)
-# plane = Plane(250, 250, 1, 0, 200, 200, 200)
-# shape = Intersect(circle, plane)
+circle = Circle(250, 250, 80, 255, 255, 255)
+plane = Plane(250, 250, 1, 0, 200, 200, 200)
+shape = Intersect(circle, plane)
 
-# 2
 # shape = Capsule(150, 150, 350, 350, 50, 255, 255, 255)
-
-# 3
 # shape = Rectangle(250, 250, -2 * np.pi / 16, 50, 150, 255, 255, 255)
-
-# 4
 # shape = CornerRectangle(250, 250, -2 * np.pi / 16, 50, 150, 50, 255, 255, 255)
-
-# 5
 # shape = Triangle(150, 250, 350, 150, 450, 350, 255, 255, 255)
-
-# 6
-shape = CornerTriangle(100, 250, 300, 150, 400, 400, 50, 255, 255, 255)
+# shape = CornerTriangle(100, 250, 300, 150, 400, 400, 50, 255, 255, 255)
 
 step = 64
 epsilon = 1e-6
