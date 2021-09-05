@@ -16,3 +16,5 @@ Rewrite light2d by python.
   - [miloyip/light2d](https://github.com/miloyip/light2d)
 
 ## my article
+
+- [学习小结一：用 C 语言画光](https://zhuanlan.zhihu.com/p/351874187)
